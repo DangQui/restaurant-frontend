@@ -1,0 +1,41 @@
+@use '../../styles/variables' as *;
+
+.logoButton {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  background: transparent;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background $transition-base, border-color $transition-base, transform $transition-base;
+
+  svg {
+    width: 90%;
+    height: 90%;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: $color-accent;
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(250, 174, 57, 0.3);
+  }
+}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+@use '../../../styles/variables' as *;
+
+.ribbon {
+  background-color: $color-accent;
+  color: #0b0501;
+  padding: 1rem 0;
+  height: 110px;
+  line-height: 86px;
+  margin: 2rem 0;
+}
+
+.track {
+  width: min(100% - 2rem, 1180px);
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+
+
+
+
+
+
+
+
+
+

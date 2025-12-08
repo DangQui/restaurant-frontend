@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo: CDN Attack - Không có SRI</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+        color: #fff;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 2.5em;
+      }
+
+      .subtitle {
+        text-align: center;
+        margin-bottom: 30px;
+        opacity: 0.9;
+        font-size: 1.1em;
+      }
+
+      .warning-banner {
+        background: rgba(255, 0, 0, 0.3);
+        border: 2px solid #ff0000;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .warning-banner h2 {
+        color: #ff6b6b;
+        margin-bottom: 10px;
+      }
+
+      .scenarios {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+
+      .scenario-card {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .scenario-card h3 {
+        color: #ffd93d;
+        margin-bottom: 15px;
+        font-size: 1.3em;
+      }
+
+      .scenario-card p {
+        margin-bottom: 15px;
+        line-height: 1.6;
+      }
+
+      .btn {
+        background: #ff6b6b;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        margin: 5px;
+        transition: all 0.3s;
+      }
+
+      .btn:hover {
+        background: #ff5252;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+      }
+
+      .btn-success {
+        background: #51cf66;
+      }
+
+      .btn-success:hover {
+        background: #40c057;
+      }
+
+      .result-box {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        padding: 15px;
+        margin-top: 15px;
+        min-height: 100px;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+      }
+
+      .result-box pre {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+
+      .alert {
+        background: rgba(255, 0, 0, 0.2);
+        border-left: 4px solid #ff0000;
+        padding: 15px;
+        margin-top: 15px;
+        border-radius: 5px;
+        animation: pulse 2s infinite;
+        display: none;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.7;
+        }
+      }
+
+      .info-box {
+        background: rgba(74, 144, 226, 0.2);
+        border-left: 4px solid #4a90e2;
+        padding: 15px;
+        margin-top: 20px;
+        border-radius: 5px;
+      }
+
+      .info-box h4 {
+        color: #4a90e2;
+        margin-bottom: 10px;
+      }
+
+      .info-box ul {
+        margin-left: 20px;
+        line-height: 1.8;
+      }
+
+      form {
+        margin-top: 15px;
+      }
+
+      form label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+
+      form input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        margin-bottom: 15px;
+        font-size: 16px;
+      }
+
+      form input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      nav {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 20px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        transition: all 0.3s;
+      }
+
+      nav a:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🚨 Demo: CDN Attack - Không có SRI</h1>
+      <p class="subtitle">
+        Minh họa các nguy cơ khi CDN bị tấn công và không có SRI bảo vệ
+      </p>
+
+      <div class="warning-banner">
+        <h2>🚨 CẢNH BÁO: Demo này mô phỏng tấn công thực tế</h2>
+        <p>
+          Trong demo này, chúng ta sẽ thấy điều gì xảy ra khi CDN bị hack và
+          không có SRI bảo vệ.
+        </p>
+      </div>
+
+      <div class="scenarios">
+        <!-- Scenario 1: Token Theft -->
+        <div class="scenario-card">
+          <h3>🔑 Scenario 1: Đánh cắp Token</h3>
+          <p>
+            Script độc hại từ CDN sẽ lắng nghe và đánh cắp Bearer token từ API
+            calls.
+          </p>
+          <button class="btn btn-success" onclick="login()">
+            Đăng nhập (Lấy Token)
+          </button>
+          <button class="btn" onclick="getUserInfo()">
+            Lấy thông tin người dùng
+          </button>
+          <div id="result1" class="result-box"></div>
+          <div id="alert1" class="alert"></div>
+        </div>
+
+        <!-- Scenario 2: Navigation Hijacking -->
+        <div class="scenario-card">
+          <h3>🧭 Scenario 2: Chuyển hướng trang</h3>
+          <p>
+            Script độc hại sẽ chuyển hướng người dùng đến trang phishing thay vì
+            trang thật.
+          </p>
+          <nav>
+            <a href="/profile" onclick="navigate('/profile'); return false;"
+              >Trang Profile</a
+            >
+            <a href="/cart" onclick="navigate('/cart'); return false;"
+              >Giỏ hàng</a
+            >
+            <a href="/checkout" onclick="navigate('/checkout'); return false;"
+              >Thanh toán</a
+            >
+          </nav>
+          <button class="btn" onclick="navigate('/profile')">
+            Xem Profile
+          </button>
+          <button class="btn" onclick="navigate('/checkout')">
+            Thanh toán
+          </button>
+          <div id="result2" class="result-box"></div>
+          <div id="alert2" class="alert"></div>
+        </div>
+
+        <!-- Scenario 3: User Info Theft -->
+        <div class="scenario-card">
+          <h3>👤 Scenario 3: Đánh cắp thông tin người dùng</h3>
+          <p>
+            Script độc hại sẽ lắng nghe và đánh cắp thông tin nhạy cảm từ form
+            inputs.
+          </p>
+          <form id="userForm" onsubmit="handleSubmit(event)">
+            <label>Email:</label>
+            <input type="email" id="email" placeholder="your@email.com" />
+            <label>Mật khẩu:</label>
+            <input type="password" id="password" placeholder="••••••••" />
+            <label>Số thẻ tín dụng:</label>
+            <input
+              type="text"
+              id="creditCard"
+              placeholder="1234 5678 9012 3456" />
+            <button type="submit" class="btn btn-success">Gửi thông tin</button>
+          </form>
+          <div id="result3" class="result-box"></div>
+          <div id="alert3" class="alert"></div>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <h4>📚 Giải thích:</h4>
+        <ul>
+          <li>
+            <strong>Không có SRI:</strong> Browser không thể verify nội dung
+            script từ CDN
+          </li>
+          <li>
+            <strong>CDN bị hack:</strong> Hacker có thể thay đổi script thành
+            code độc hại
+          </li>
+          <li>
+            <strong>Hậu quả:</strong> Token, thông tin người dùng, navigation
+            đều có thể bị tấn công
+          </li>
+          <li>
+            <strong>Giải pháp:</strong> Sử dụng SRI (Subresource Integrity) để
+            verify hash của script
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 🚨 NGUY HIỂM: Load CDN JS KHÔNG có SRI (mô phỏng CDN bị hack) -->
+    <!-- Dùng raw.githubusercontent.com để load file malicious từ commit 2 (không SRI) -->
+    <!-- <script src="https://cdn.jsdelivr.net/gh/DangQui/sri-demo-script-cdn@main/demo-app-safe.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/gh/DangQui/sri-demo-script-cdn@latest/demo-app-safe.js"></script>
+  </body>
+</html>

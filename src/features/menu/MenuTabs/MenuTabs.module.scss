@@ -1,0 +1,46 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.tabs {
+  @include container;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-bottom: 2rem;
+  position: sticky;
+  top: 80px;
+  z-index: 5;
+  background: linear-gradient(180deg, rgba(5, 5, 5, 0.95) 70%, rgba(5, 5, 5, 0));
+
+  button {
+    border: 1px solid $color-border;
+    border-radius: 999px;
+    padding: 0.65rem 1.5rem;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background $transition-base, border-color $transition-base, color $transition-base;
+
+    &[data-active='true'] {
+      background: rgba(250, 174, 57, 0.15);
+      border-color: $color-accent;
+      color: $color-accent;
+    }
+
+    &:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+

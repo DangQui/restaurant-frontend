@@ -1,0 +1,202 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.page {
+  min-height: 60vh;
+}
+
+.header {
+  @include section-spacing(4rem 0 2rem);
+  background-color: #09080c;
+}
+
+.container {
+  @include container;
+}
+
+.searchWrapper {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+
+  > * {
+    max-width: 500px;
+    width: 100%;
+  }
+}
+
+.results {
+  @include section-spacing(3rem 0);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+
+  > * {
+    animation: fadeInUp 0.6s ease-out;
+    animation-fill-mode: both;
+  }
+
+  > *:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+
+  > *:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  > *:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  > *:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+
+  > *:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+
+  > *:nth-child(n + 6) {
+    animation-delay: 0.6s;
+  }
+}
+
+.card {
+  border-radius: 1.5rem;
+  overflow: hidden;
+  border: 1px solid $color-border;
+  background-color: $color-card;
+  display: flex;
+  flex-direction: column;
+  transition: transform $transition-base, box-shadow $transition-base;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(250, 174, 57, 0.15);
+  }
+}
+
+.cardMedia {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform $transition-base;
+  }
+
+  .card:hover & img {
+    transform: scale(1.05);
+  }
+}
+
+.badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.35rem 0.75rem;
+  background-color: $color-accent;
+  color: #0b0501;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.cardBody {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+
+  h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-family: $font-primary;
+  }
+
+  p {
+    margin: 0;
+    color: $color-muted;
+    font-size: 0.9rem;
+    flex: 1;
+  }
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid $color-border;
+}
+
+.category {
+  font-size: 0.85rem;
+  color: $color-muted;
+  text-transform: capitalize;
+}
+
+.price {
+  color: $color-accent;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: $color-card;
+  border-radius: 1rem;
+  border: 1px solid $color-border;
+
+  > span {
+    color: $color-muted;
+    font-size: 0.9rem;
+  }
+}
+
+.categoryTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.categoryTag {
+  padding: 0.5rem 1rem;
+  border: 1px solid $color-border;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:hover {
+    border-color: $color-accent;
+    background-color: rgba(250, 174, 57, 0.1);
+    color: $color-accent;
+  }
+}
+
+.feedback {
+  text-align: center;
+  color: $color-muted;
+  padding: 3rem 0;
+  font-size: 1.1rem;
+}
+

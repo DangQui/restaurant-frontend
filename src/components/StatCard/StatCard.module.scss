@@ -1,0 +1,35 @@
+@use '../../styles/variables' as *;
+
+.card {
+  padding: 1.5rem;
+  border: 1px solid $color-border;
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.02);
+  text-align: center;
+  min-width: 140px;
+}
+
+.value {
+  display: block;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-family: $font-primary;
+  color: $color-accent;
+}
+
+.label {
+  color: $color-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,67 @@
+@use '../../styles/variables' as *;
+
+.button {
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.85rem 1.75rem;
+  transition: transform $transition-base, box-shadow $transition-base;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #0a0a0a;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(250, 174, 57, 0.2);
+  }
+}
+
+.primary {
+  background: linear-gradient(120deg, $color-accent, $color-accent-strong);
+  color: #0c0300;
+}
+
+.secondary {
+  background: transparent;
+  color: #fff;
+  border: 1px solid $color-border;
+}
+
+.ghost {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.sm {
+  padding: 0.65rem 1.3rem;
+  font-size: 0.85rem;
+}
+
+.md {
+}
+
+.lg {
+  padding: 1rem 2.5rem;
+  font-size: 1.05rem;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+
+

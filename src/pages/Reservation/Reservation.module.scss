@@ -1,0 +1,368 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.page {
+  min-height: 100vh;
+  padding: 4rem 0 6rem;
+  background: $color-background;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.hero {
+  @include container;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 4rem;
+  animation: fadeInUp 0.6s ease-out;
+
+  .pill {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    border-radius: 999px;
+    background: rgba(250, 174, 57, 0.1);
+    border: 1px solid rgba(250, 174, 57, 0.3);
+    color: $color-accent;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-family: $font-primary;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    margin: 1rem 0 1.5rem;
+    color: #fff;
+    line-height: 1.2;
+  }
+
+  p {
+    color: $color-muted;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+}
+
+.container {
+  @include container;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  align-items: start;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.form {
+  background: $color-card;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+  @media (max-width: 640px) {
+    padding: 1.5rem;
+  }
+}
+
+.formTitle {
+  font-family: $font-primary;
+  font-size: clamp(1.8rem, 3vw, 2.2rem);
+  color: #fff;
+  margin: 0 0 0.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    > span {
+      font-size: 0.9rem;
+      color: #fff;
+      font-weight: 500;
+    }
+  }
+
+  input,
+  select {
+    padding: 0.9rem 1.2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    font-size: 0.95rem;
+    transition: all $transition-base;
+    font-family: $font-secondary;
+
+    &::placeholder {
+      color: $color-muted;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: rgba(250, 174, 57, 0.6);
+      background: rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 0 3px rgba(250, 174, 57, 0.1);
+    }
+
+    &:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  input[type="date"],
+  input[type="time"] {
+    cursor: pointer;
+  }
+
+  input[type="number"] {
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      opacity: 1;
+    }
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.required {
+  color: $color-accent-strong;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 1.1rem 2rem;
+  margin-top: 1rem;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(120deg, $color-accent, $color-accent-strong);
+  color: #0c0300;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all $transition-base;
+  font-family: $font-secondary;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(250, 174, 57, 0.4);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+.info {
+  position: sticky;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: fadeInUp 0.6s ease-out 0.4s both;
+
+  @media (max-width: 1024px) {
+    position: static;
+  }
+}
+
+.infoCard {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all $transition-base;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  h3 {
+    font-family: $font-primary;
+    font-size: 1.5rem;
+    color: #fff;
+    margin: 0 0 1.5rem;
+  }
+}
+
+.infoList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.infoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+
+  svg {
+    flex-shrink: 0;
+    color: $color-accent;
+    margin-top: 0.2rem;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+
+    span {
+      font-size: 0.85rem;
+      color: $color-muted;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    strong {
+      font-size: 1rem;
+      color: #fff;
+      font-weight: 600;
+    }
+  }
+}
+
+.hours {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.hourItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  span {
+    color: $color-muted;
+    font-size: 0.95rem;
+  }
+
+  strong {
+    color: #fff;
+    font-weight: 600;
+  }
+}
+
+.notesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  li {
+    position: relative;
+    padding-left: 1.5rem;
+    color: $color-muted;
+    font-size: 0.9rem;
+    line-height: 1.6;
+
+    &::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: $color-accent;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.errorState {
+  @include container;
+  padding: 6rem 0;
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+
+  h2 {
+    font-family: $font-primary;
+    font-size: 2rem;
+    color: #fff;
+    margin: 0 0 1rem;
+  }
+
+  p {
+    color: $color-muted;
+    font-size: 1.1rem;
+    margin: 0 0 2rem;
+  }
+}
+
+.authButton {
+  padding: 0.9rem 2rem;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(120deg, $color-accent, $color-accent-strong);
+  color: #0c0300;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(250, 174, 57, 0.3);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

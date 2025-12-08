@@ -1,0 +1,43 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.hero {
+  @include section-spacing(4rem 0 2rem);
+  border-bottom: 1px solid $color-border;
+}
+
+.container {
+  @include container;
+
+  h1 {
+    font-family: $font-primary;
+    font-size: clamp(2.5rem, 4vw, 3.6rem);
+    margin: 1.5rem 0 1rem;
+  }
+
+  p {
+    color: $color-muted;
+    max-width: 760px;
+  }
+}
+
+.meta {
+  display: flex;
+  gap: 2rem;
+  margin: 2rem 0 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  font-size: 0.8rem;
+  color: $color-muted;
+}
+
+
+
+
+
+
+
+
+
+
+

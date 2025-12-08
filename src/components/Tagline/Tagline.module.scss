@@ -1,0 +1,29 @@
+@use '../../styles/variables' as *;
+
+.tagline {
+  display: inline-flex;
+  gap: 0.65rem;
+  align-items: center;
+  font-size: 0.9rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: $color-muted;
+
+  &::before {
+    content: '';
+    width: 36px;
+    height: 2px;
+    background-color: $color-muted;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+

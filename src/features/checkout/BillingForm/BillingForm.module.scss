@@ -1,0 +1,90 @@
+@use "../../../styles/variables" as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.title {
+  margin: 0 0 1rem;
+  font-family: $font-primary;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: #fff;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  > span {
+    font-size: 0.9rem;
+    color: #fff;
+    font-weight: 500;
+  }
+
+  input,
+  select {
+    padding: 0.85rem 1.1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    font-size: 0.95rem;
+    transition: border-color $transition-base, background $transition-base;
+
+    &::placeholder {
+      color: $color-muted;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: rgba(250, 174, 57, 0.6);
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    &:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  select {
+    appearance: none;
+    cursor: pointer;
+    padding-right: 2.5rem;
+  }
+}
+
+.selectWrapper {
+  position: relative;
+
+  select {
+    width: 100%;
+  }
+}
+
+.selectIcon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  color: $color-muted;
+}
+
+.required {
+  color: $color-accent-strong;
+}

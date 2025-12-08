@@ -1,0 +1,120 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.page {
+  min-height: 100vh;
+  background: $color-background;
+  @include section-spacing(4rem 0 6rem);
+}
+
+.hero {
+  @include container;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: center;
+
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.eyebrow {
+  display: inline-block;
+  padding: 0.4rem 1.2rem;
+  border-radius: 999px;
+  background: rgba(250, 174, 57, 0.12);
+  border: 1px solid rgba(250, 174, 57, 0.5);
+  color: $color-accent;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.title {
+  font-family: $font-primary;
+  font-size: clamp(2.5rem, 4.8vw, 3.6rem);
+  color: #fff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.subtitle {
+  margin: 0;
+  color: $color-muted;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 520px;
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+
+  @media (max-width: 640px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.countItem {
+  text-align: left;
+}
+
+.countNumber {
+  display: block;
+  font-family: $font-primary;
+  font-size: clamp(2.4rem, 4vw, 3rem);
+  color: $color-accent;
+}
+
+.countLabel {
+  display: block;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $color-muted;
+}
+
+.actions {
+  margin-top: 1rem;
+}
+
+.rightColumn {
+  display: flex;
+  justify-content: center;
+}
+
+.heroImageWrapper {
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: $color-card;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-height: 520px;
+    object-fit: cover;
+  }
+}
+
+.decorStar {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  font-size: 2.4rem;
+  color: $color-accent;
+}

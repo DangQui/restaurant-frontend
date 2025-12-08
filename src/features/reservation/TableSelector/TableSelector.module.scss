@@ -1,0 +1,95 @@
+@use "../../../styles/variables" as *;
+
+.container {
+  margin-top: 1.5rem;
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+.tableCard {
+  padding: 1.25rem 1rem;
+  border-radius: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: all $transition-base;
+  text-align: center;
+
+  &:hover {
+    border-color: rgba(250, 174, 57, 0.5);
+    background: rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
+  }
+
+  &.selected {
+    border-color: $color-accent;
+    background: rgba(250, 174, 57, 0.1);
+    box-shadow: 0 4px 12px rgba(250, 174, 57, 0.2);
+  }
+}
+
+.tableNumber {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.75rem;
+  font-family: $font-primary;
+}
+
+.tableInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.capacity {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: $color-muted;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.zone {
+  font-size: 0.75rem;
+  color: $color-muted;
+  text-transform: capitalize;
+}
+
+.hint,
+.empty,
+.error {
+  padding: 1.5rem;
+  text-align: center;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: $color-muted;
+  margin: 0;
+}
+
+.error {
+  color: #ff9a9a;
+  border-color: rgba(255, 154, 154, 0.2);
+}
+
+.empty {
+  color: $color-muted;
+}

@@ -1,0 +1,250 @@
+.chatButton {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 40;
+  border: none;
+  border-radius: 999px;
+  padding: 0.75rem 1.2rem;
+  background: #111827;
+  color: #f9fafb;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.35);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.chatButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.4);
+  background: #0f172a;
+}
+
+.chatButtonIcon {
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f97316;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.chatPanel {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 5.5rem;
+  width: min(380px, 100% - 2rem);
+  max-height: 70vh;
+  background: rgba(15, 23, 42, 0.97);
+  backdrop-filter: blur(18px);
+  border-radius: 1.25rem;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.6);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  z-index: 50;
+}
+
+.header {
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.headerInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.agentAvatar {
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 999px;
+  background: radial-gradient(
+    circle at 30% 20%,
+    #fbbf24,
+    #f97316 45%,
+    #7c2d12 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fefce8;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.agentMeta {
+  display: flex;
+  flex-direction: column;
+}
+
+.agentName {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+.agentRole {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.statusDot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: #22c55e;
+  box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.18);
+}
+
+.closeButton {
+  border: none;
+  background: transparent;
+  color: #9ca3af;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.2rem;
+}
+
+.messages {
+  flex: 1;
+  padding: 0.9rem 0.9rem 0.4rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.messageRow {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.messageRowUser {
+  justify-content: flex-end;
+}
+
+.messageBubble {
+  max-width: 80%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.9rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.messageUser {
+  background: #f97316;
+  color: #fefce8;
+  border-bottom-right-radius: 0.2rem;
+}
+
+.messageAssistant {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  color: #e5e7eb;
+  border-bottom-left-radius: 0.2rem;
+}
+
+.messageMeta {
+  font-size: 0.7rem;
+  color: #9ca3af;
+  margin-top: 0.25rem;
+}
+
+.productLinks {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.productLink {
+  background: rgba(249, 115, 22, 0.15);
+  border: 1px solid rgba(249, 115, 22, 0.4);
+  color: #fbbf24;
+  padding: 0.4rem 0.7rem;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: left;
+  font-weight: 500;
+}
+
+.productLink:hover {
+  background: rgba(249, 115, 22, 0.25);
+  border-color: rgba(249, 115, 22, 0.6);
+  transform: translateX(2px);
+}
+
+.inputBar {
+  padding: 0.45rem 0.9rem 0.9rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.3);
+  display: flex;
+  gap: 0.55rem;
+}
+
+.inputField {
+  flex: 1;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: rgba(15, 23, 42, 0.9);
+  padding: 0.5rem 0.9rem;
+  color: #e5e7eb;
+  font-size: 0.85rem;
+}
+
+.inputField::placeholder {
+  color: #6b7280;
+}
+
+.sendButton {
+  border-radius: 999px;
+  border: none;
+  background: #f97316;
+  color: #fefce8;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 500;
+}
+
+.sendButton:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.typing {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  padding-left: 0.25rem;
+}
+
+@media (max-width: 640px) {
+  .chatPanel {
+    right: 0.75rem;
+    left: 0.75rem;
+    width: auto;
+    max-height: 75vh;
+  }
+
+  .chatButton {
+    right: 0.75rem;
+    bottom: 0.75rem;
+  }
+}

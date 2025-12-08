@@ -1,0 +1,35 @@
+@use '../../styles/variables' as *;
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  padding: 0 0.45rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.default {
+  color: #fff;
+}
+
+.accent {
+  background: linear-gradient(120deg, $color-accent, $color-accent-strong);
+  color: #0b0703;
+  border-color: transparent;
+}
+
+.muted {
+  color: $color-muted;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+
+
+
