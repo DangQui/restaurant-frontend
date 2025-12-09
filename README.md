@@ -1,16 +1,27 @@
-# React + Vite
+Thành Viên Nhóm:
+ - Đặng Đình Quí: Lên ý tưởng, thiết kế demo phòng thủ tấn công. Sửa demo web thực tế hơn và phát triển phòng chống XSS
+ - Nguyễn Gia Huy: Lên ý tưởng, thiết kế demo phòng thủ tấn công. tích hợp sri (integrity) vào project
+ - Văn Tiến Nam: Lên ý tưởng, thiết kế demo phòng thủ tấn công. Hoàn thành báo cáo, thiết kế file giả lập url CDN.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hướng Dẫn Chạy Chương Trình Demo:
+Restaurant-frontend (Root) -> public -> Chạy (demo-sri-attack, demo-sri-protected)
 
-Currently, two official plugins are available:
+Hương Dẫn Chạy Dự Án: 
+1. Clone backend: https://github.com/DangQui/restaurant-backend (Chạy theo README backend)
+2. npm install (import tất cả các modules)
+3. Chạy: npm run dev
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Ảnh Demo:
+- Lỗi khi sai mã hash: <img width="1930" height="938" alt="image" src="https://github.com/user-attachments/assets/69bf40b9-ed95-448c-a5dd-17a0a2b19359" />
+- <img width="1919" height="988" alt="image" src="https://github.com/user-attachments/assets/a7c46a94-bb39-4a34-be24-66352a1eef6b" />
+- <img width="1920" height="999" alt="image" src="https://github.com/user-attachments/assets/45a5bdd7-987c-49df-b943-de5bcad913c3" />
+- <img width="1919" height="909" alt="image" src="https://github.com/user-attachments/assets/6e05b0ed-344f-4369-8854-a13e5f1a7b1b" />
+- <img width="1919" height="913" alt="image" src="https://github.com/user-attachments/assets/fe85cd83-8713-43d9-a659-08a45c5ac20f" />
 
-## React Compiler
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+
+
+
