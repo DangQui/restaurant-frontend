@@ -41,7 +41,7 @@ let indexHtml, globalScss;
 try {
   indexHtml = fs.readFileSync(path.join(projectRoot, "index.html"), "utf-8");
 } catch (error) {
-  log("❌ Không thể đọc index.html", "red");
+  log("❌ Không thể đọc index.html", "red", error);
   process.exit(1);
 }
 
@@ -51,7 +51,7 @@ try {
     "utf-8"
   );
 } catch (error) {
-  log("⚠️  Không thể đọc global.scss (có thể không tồn tại)", "yellow");
+  log("⚠️  Không thể đọc global.scss (có thể không tồn tại)", "yellow", error);
   globalScss = "";
 }
 
